@@ -2,11 +2,76 @@
 
 <script>
 var Clicks=0;
+var Price=10;
+var UpgClick=1;
+
+function Save(){
+ 
+ document.cookie = "savedpebbles=" + Clicks;
+  document.cookie = "savedprice=" + Price;
+  document.cookie = "savedupgrad=" + UpgClick;
+ alert("Saved");
+ }
+ 
+function readCookie(cname) {
+  var name = cname + "=";
+  var decodedCookie = decodeURIComponent(document.cookie);
+  var ca = decodedCookie.split(';');
+  for(var i = 0; i <ca.length; i++) {
+    var c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+    
+    
+    function Load(){
+Clicks=0;
+Price=0;
+UpgClick=0;
+
+var SavClicks = readCookie("savedpebbles");
+
+var SavUpgClick = readCookie("savedupgrad");
+
+var SavPrice = readCookie("savedprice");
+
+Clicks=SavClicks++;
+Price=SavPrice++;
+UpgClick=SavUpgClick++;
+
+document.getElementById("counter").innerHTML = Clicks;
+document.getElementById("price").innerHTML = Price + " pebbles";
+document.getElementById("counter2").innerHTML = UpgClick;
+ 
+ 
+}
 
 function Collect(){
-Clicks=Clicks+1;
+Clicks=Clicks+UpgClick;
 document.getElementById("counter").innerHTML = Clicks;
 }
+
+function Upg(){
+if(Clicks>=Price){
+Clicks=Clicks-Price;
+Price=Price+Price;
+UpgClick=UpgClick+1;
+document.getElementById("counter").innerHTML = Clicks;
+document.getElementById("price").innerHTML = Price + " pebbles";
+document.getElementById("counter2").innerHTML = UpgClick;
+}else{
+alert("Not enough pebbles!");
+}
+
+ 
+}
+
 </script>
 <style>
 body{background:#008c70;
@@ -30,7 +95,12 @@ border-radius:10px
    
 }
 
+#flower{
+background:#eb4034;
+ padding:5px;
+border-radius:10px
 
+}
 #clicks{
 width:50%;
 
@@ -42,9 +112,9 @@ color:white;
    border-radius:10px
    
 }
-#pebble{
-  width:30%;
-  height:30%;
+button{
+padding:10px;
+ transition-duration:0.3s;
   background:#fff;
   margin:0px auto;
   border:#999999 2px solid;
@@ -52,21 +122,40 @@ color:white;
   border-radius:10px
   
   
-  
 }
+
+button:hover{
+ border-radius:0px
+}
+
+#upgrade{width:100%;
+
+}
+
+
 </style>
 <body>
 <h1>Pebbles</h1>
 <div id="content">
-<h4>Collecting Zone</h4>
 <br>
  <div id="c_z">
+ <h2>Pebbles</h2>
+ <br>
   <button type="button" id="pebble" onclick="Collect();">Collect</button>
-  
   <br>
   <br>
   <br>
    <div id="clicks"><p id="counter">0</p></div>
+   <br>
+   <div id="flower">Flowers:<p id="counter2">1</p></div>
+   <br>
+   <div id="upgs">
+   <button type="button" id="upgrade" onclick="Upg();">+1 Flower: <p id="price">10 pebbles</p></button>
+   <br>
+   <br>
+    <button type="button" onclick="Save();">Save</button>
+    <button type="button" onclick="Load();">Load</button>
+   </div>
  </div>
 </div>
 </body>
