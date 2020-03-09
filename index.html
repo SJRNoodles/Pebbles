@@ -1,0 +1,74 @@
+<html>
+
+<script>
+var Clicks=0;
+
+function Collect(){
+Clicks=Clicks+1;
+document.getElementById("counter").innerHTML = Clicks;
+}
+</script>
+<style>
+body{background:#008c70;
+font-family:Helvetica;
+}
+#content{
+padding:5px;
+border: 1px solid #ccc;
+background: #fff;
+border-radius:10px
+
+}
+
+#c_z{
+ width:50%;
+   margin:0px auto;
+   background:#3b7322;
+    padding:10px;
+    
+   border-radius:10px
+   
+}
+
+
+#clicks{
+width:50%;
+
+color:white;
+   margin:0px auto;
+   background:#878787;
+    padding:10px;
+    text-align:center;
+   border-radius:10px
+   
+}
+#pebble{
+  width:30%;
+  height:30%;
+  background:#fff;
+  margin:0px auto;
+  border:#999999 2px solid;
+ 
+  border-radius:10px
+  
+  
+  
+}
+</style>
+<body>
+<h1>Pebbles</h1>
+<div id="content">
+<h4>Collecting Zone</h4>
+<br>
+ <div id="c_z">
+  <button type="button" id="pebble" onclick="Collect();">Collect</button>
+  
+  <br>
+  <br>
+  <br>
+   <div id="clicks"><p id="counter">0</p></div>
+ </div>
+</div>
+</body>
+
+</html>
