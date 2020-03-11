@@ -1,56 +1,33 @@
-<html>
-
 <script>
 var Clicks=0;
 var Price=10;
 var UpgClick=1;
 
 function Save(){
- 
- document.cookie = "savedpebbles=" + Clicks;
-  document.cookie = "savedprice=" + Price;
-  document.cookie = "savedupgrad=" + UpgClick;
- alert("Saved");
- }
- 
-function readCookie(cname) {
-  var name = cname + "=";
-  var decodedCookie = decodeURIComponent(document.cookie);
-  var ca = decodedCookie.split(';');
-  for(var i = 0; i <ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
-      return c.substring(name.length, c.length);
-    }
-  }
-  return "";
+ localStorage.setItem("SavedPebbles", Clicks);
+ localStorage.setItem("SavedPrice", Price);
+ localStorage.setItem("SavedUpg", UpgClick);
 }
-    
-    
-    function Load(){
+
+function Load(){
 Clicks=0;
+var LoadedClicks = localStorage.getItem("SavedPebbles");
+Clicks = LoadedClicks++;
+
 Price=0;
-UpgClick=0;
+var LoadedPrice = localStorage.getItem("SavedPrice");
+Price = LoadedPrice++;
 
-var SavClicks = readCookie("savedpebbles");
-
-var SavUpgClick = readCookie("savedupgrad");
-
-var SavPrice = readCookie("savedprice");
-
-Clicks=SavClicks++;
-Price=SavPrice++;
-UpgClick=SavUpgClick++;
+UpgClick = 0;
+var LoadedUpg = localStorage.getItem("SavedUpg");
+UpgClick = LoadedUpg++;
 
 document.getElementById("counter").innerHTML = Clicks;
 document.getElementById("price").innerHTML = Price + " pebbles";
 document.getElementById("counter2").innerHTML = UpgClick;
- 
- 
+
 }
+ 
 
 function Collect(){
 Clicks=Clicks+UpgClick;
@@ -143,7 +120,7 @@ button:hover{
 <br>
  <div id="c_z">
  <h2>Pebbles</h2>
- This game uses cookies to save data.
+ This game uses localStorage to save data.
  <br>
  <br>
   <button type="button" id="pebble" onclick="Collect();">Collect</button>
