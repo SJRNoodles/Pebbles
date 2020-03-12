@@ -1,0 +1,57 @@
+body{background:#008c70;
+font-family:Helvetica;
+}
+#content{
+padding:5px;
+border: 1px solid #ccc;
+background: #fff;
+border-radius:10px
+
+}
+
+#c_z{
+ width:50%;
+   margin:0px auto;
+   background:#3b7322;
+    padding:10px;
+    
+   border-radius:10px
+   
+}
+
+#flower{
+background:#eb4034;
+ padding:5px;
+border-radius:10px
+
+}
+#clicks{
+width:50%;
+
+color:white;
+   margin:0px auto;
+   background:#878787;
+    padding:10px;
+    text-align:center;
+   border-radius:10px
+   
+}
+button{
+padding:10px;
+ transition-duration:0.3s;
+  background:#fff;
+  margin:0px auto;
+  border:#999999 2px solid;
+ 
+  border-radius:10px
+  
+  
+}
+
+button:hover{
+ border-radius:0px
+}
+
+#upgrade{width:100%;
+
+}
